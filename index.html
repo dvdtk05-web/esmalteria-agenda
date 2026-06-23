@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esmalteria Beatriz Santana · Agenda</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:    #C8748A;
+    --rose-lt: #F2D9E0;
+    --rose-dk: #8C3F54;
+    --cream:   #FAF7F4;
+    --ink:     #2A1F24;
+    --muted:   #7A6870;
+    --white:   #FFFFFF;
+    --border:  #E8DDE2;
+    --success: #4CAF82;
+    --danger:  #C85C5C;
+    --radius:  12px;
+    --shadow:  0 4px 24px rgba(42,31,36,.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(42,31,36,.06);
+  }
+
+  .logo-circle {
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--rose), var(--rose-dk));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .brand h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--rose-dk);
+    line-height: 1.1;
+  }
+
+  .brand p { font-size: 11px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--rose-lt);
+    border-radius: 10px;
+    padding: 4px;
+    margin-left: auto;
+  }
+
+  .tab-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    background: transparent;
+    color: var(--rose-dk);
+  }
+
+  .tab-btn.active {
+    background: var(--white);
+    color: var(--rose-dk);
+    box-shadow: 0 2px 8px rgba(200,116,138,.15);
+  }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 600;
+    color: var(--rose-dk);
+    margin-bottom: 6px;
+  }
+  .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ── FORM GRID ── */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-grid.full { grid-template-columns: 1fr; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.span2 { grid-column: span 2; }
+
+  label { font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+
+  input, select, textarea {
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--white);
+    transition: border-color .2s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus { border-color: var(--rose); }
+  textarea { resize: vertical; min-height: 70px; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px;
+    border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all .2s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--rose), var(--rose-dk));
+    color: var(--white);
+  }
+  .btn-primary:hover { opacity: .9; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(200,116,138,.35); }
+
+  .btn-ghost {
+    background: var(--rose-lt);
+    color: var(--rose-dk);
+  }
+  .btn-ghost:hover { background: #eac8d3; }
+
+  .btn-danger { background: #fdeaea; color: var(--danger); }
+  .btn-danger:hover { background: #f8d0d0; }
+
+  .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+  /* ── AGENDAMENTO FORM ── */
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* ── PREVIEW EMAIL ── */
+  .preview-box {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-top: 20px;
+    display: none;
+  }
+
+  .preview-box.show { display: block; }
+  .preview-box h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; margin-bottom: 8px; color: var(--rose-dk); }
+
+  /* ── LISTA DE AGENDAMENTOS ── */
+  .agenda-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .appt-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 2px 8px rgba(42,31,36,.05);
+    transition: box-shadow .2s;
+  }
+
+  .appt-card:hover { box-shadow: var(--shadow); }
+
+  .appt-date {
+    min-width: 60px;
+    text-align: center;
+    background: var(--rose-lt);
+    border-radius: 8px;
+    padding: 10px 8px;
+  }
+
+  .appt-date .day { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--rose-dk); line-height: 1; }
+  .appt-date .month { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+
+  .appt-info { flex: 1; }
+  .appt-info .name { font-weight: 500; font-size: 15px; color: var(--ink); }
+  .appt-info .meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .appt-info .service { font-size: 13px; color: var(--rose-dk); font-weight: 500; margin-top: 4px; }
+
+  .appt-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--rose-dk);
+    min-width: 80px;
+    text-align: right;
+  }
+
+  .appt-actions { display: flex; gap: 8px; }
+
+  .badge {
+    display: inline-flex; align-items: center;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: .03em;
+  }
+  .badge-green { background: #d4f2e4; color: #2d7a52; }
+  .badge-orange { background: #fff0d9; color: #b06a00; }
+  .badge-red { background: #fdeaea; color: var(--danger); }
+
+  /* ── SERVIÇOS ── */
+  .service-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+
+  .service-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+
+  .service-icon {
+    width: 36px; height: 36px;
+    background: var(--rose-lt);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  .service-name { flex: 1; font-weight: 500; font-size: 14px; }
+  .service-price { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--rose-dk); font-weight: 600; min-width: 80px; text-align: right; }
+
+  /* ── ADD SERVICE FORM ── */
+  .add-service-form {
+    display: flex; gap: 12px; align-items: flex-end;
+    flex-wrap: wrap;
+    background: var(--cream);
+    border: 1.5px dashed var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+
+  .add-service-form .field { flex: 1; min-width: 140px; }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--ink);
+    color: var(--white);
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.2);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all .3s;
+    z-index: 999;
+    max-width: 320px;
+  }
+
+  #toast.show { opacity: 1; transform: translateY(0); }
+  #toast.success { background: var(--success); }
+  #toast.error { background: var(--danger); }
+
+  /* ── STATS ── */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-card .label { font-size: 11px; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+  .stat-card .value { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; color: var(--rose-dk); line-height: 1; }
+  .stat-card .sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(42,31,36,.45);
+    z-index: 200;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 24px 80px rgba(42,31,36,.2);
+  }
+
+  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--rose-dk); margin-bottom: 6px; }
+  .modal p { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .empty .icon { font-size: 40px; margin-bottom: 12px; }
+  .empty p { font-size: 14px; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+  .filter-bar input, .filter-bar select { flex: 1; min-width: 160px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    header { padding: 14px 16px; flex-wrap: wrap; }
+    .tabs { margin-left: 0; width: 100%; }
+    .tab-btn { flex: 1; text-align: center; padding: 8px 10px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .field.span2 { grid-column: span 1; }
+    .stats-row { grid-template-columns: 1fr; }
+    .appt-card { flex-wrap: wrap; }
+    main { padding: 20px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-circle">B</div>
+  <div class="brand">
+    <h1>Esmalteria Beatriz Santana</h1>
+    <p>Painel de Agendamento</p>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showPage('agenda')">📅 Agendar</button>
+    <button class="tab-btn" onclick="showPage('lista')">📋 Agendamentos</button>
+    <button class="tab-btn" onclick="showPage('servicos')">💅 Serviços</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════ PAGE: AGENDAR ══════════ -->
+  <div id="page-agenda" class="page active">
+    <p class="section-title">Novo Agendamento</p>
+    <p class="section-sub">Preencha os dados da cliente e envie o convite direto para a agenda dela.</p>
+
+    <div class="card">
+      <div class="form-grid">
+
+        <div class="field">
+          <label>Nome da Cliente</label>
+          <input type="text" id="f-nome" placeholder="Ex: Ana Lima">
+        </div>
+
+        <div class="field">
+          <label>E-mail da Cliente</label>
+          <input type="email" id="f-email" placeholder="cliente@email.com">
+        </div>
+
+        <div class="field">
+          <label>Serviço</label>
+          <select id="f-servico"></select>
+        </div>
+
+        <div class="field">
+          <label>Valor (R$)</label>
+          <input type="number" id="f-valor" placeholder="0.00" step="0.01" min="0">
+        </div>
+
+        <div class="field">
+          <label>Data</label>
+          <input type="date" id="f-data">
+        </div>
+
+        <div class="field">
+          <label>Horário de Início</label>
+          <input type="time" id="f-hora">
+        </div>
+
+        <div class="field">
+          <label>Duração (minutos)</label>
+          <select id="f-duracao">
+            <option value="30">30 min</option>
+            <option value="60" selected>1 hora</option>
+            <option value="90">1h 30min</option>
+            <option value="120">2 horas</option>
+            <option value="150">2h 30min</option>
+            <option value="180">3 horas</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Telefone (opcional)</label>
+          <input type="tel" id="f-tel" placeholder="(77) 99999-9999">
+        </div>
+
+        <div class="field span2">
+          <label>Observações (opcional)</label>
+          <textarea id="f-obs" placeholder="Ex: cliente alérgica a determinado produto..."></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="gerarConvite()">
+          📨 Gerar Convite & Salvar
+        </button>
+        <button class="btn btn-ghost" onclick="previewEmail()">
+          👁 Pré-visualizar E-mail
+        </button>
+        <button class="btn btn-ghost" onclick="limparForm()">
+          🗑 Limpar
+        </button>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="preview-box" id="preview-box">
+        <h4>📧 Pré-visualização do E-mail</h4>
+        <div id="preview-content"></div>
+      </div>
+    </div>
+
+    <!-- LINKS GERADOS -->
+    <div id="links-gerados" style="display:none; margin-top:20px;">
+      <div class="card">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--rose-dk);margin-bottom:14px;">✅ Convite Gerado com Sucesso!</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;">📥 Arquivo .ICS (abre em qualquer agenda)</p>
+            <button class="btn btn-ghost" id="btn-ics" onclick="baixarICS()">⬇ Baixar arquivo .ics</button>
+          </div>
+          <div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em;">🗓 Link do Google Calendar</p>
+            <a id="link-gcal" href="#" target="_blank" class="btn btn-primary" style="text-decoration:none;">📅 Abrir no Google Calendar</a>
+          </div>
+          <div style="background:var(--cream);border-radius:8px;padding:14px;font-size:13px;color:var(--muted);">
+            💡 <strong>Como enviar:</strong> Copie o link do Google Calendar e mande pelo WhatsApp, ou anexe o arquivo .ics no e-mail da cliente.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PAGE: LISTA ══════════ -->
+  <div id="page-lista" class="page">
+    <p class="section-title">Agendamentos</p>
+    <p class="section-sub">Visualize e gerencie todos os horários marcados.</p>
+
+    <div class="stats-row" id="stats-row">
+      <div class="stat-card">
+        <div class="label">Hoje</div>
+        <div class="value" id="stat-hoje">0</div>
+        <div class="sub">agendamentos</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Esta semana</div>
+        <div class="value" id="stat-semana">0</div>
+        <div class="sub">agendamentos</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Total</div>
+        <div class="value" id="stat-total">0</div>
+        <div class="sub">registrados</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" id="busca" placeholder="🔍 Buscar por nome ou serviço..." oninput="renderLista()">
+      <select id="filtro-status" onchange="renderLista()">
+        <option value="">Todos os status</option>
+        <option value="confirmado">Confirmado</option>
+        <option value="pendente">Pendente</option>
+        <option value="cancelado">Cancelado</option>
+      </select>
+    </div>
+
+    <div class="agenda-list" id="agenda-list">
+      <div class="empty"><div class="icon">📭</div><p>Nenhum agendamento ainda.<br>Crie um na aba "Agendar".</p></div>
+    </div>
+  </div>
+
+  <!-- ══════════ PAGE: SERVIÇOS ══════════ -->
+  <div id="page-servicos" class="page">
+    <p class="section-title">Serviços</p>
+    <p class="section-sub">Gerencie os serviços oferecidos e seus valores.</p>
+
+    <div class="service-list" id="service-list"></div>
+
+    <div class="add-service-form">
+      <div class="field">
+        <label>Nome do Serviço</label>
+        <input type="text" id="ns-nome" placeholder="Ex: Spa dos Pés">
+      </div>
+      <div class="field" style="max-width:60px;">
+        <label>Ícone</label>
+        <input type="text" id="ns-icon" placeholder="💅" maxlength="2">
+      </div>
+      <div class="field" style="max-width:140px;">
+        <label>Valor (R$)</label>
+        <input type="number" id="ns-valor" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <button class="btn btn-primary" style="margin-bottom:0;" onclick="adicionarServico()">+ Adicionar</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- MODAL CANCELAR -->
+<div class="modal-overlay" id="modal-cancelar">
+  <div class="modal">
+    <h3>Cancelar Agendamento</h3>
+    <p>Tem certeza que deseja cancelar o agendamento de <strong id="modal-nome"></strong>? O status será alterado para cancelado.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="fecharModal()">Voltar</button>
+      <button class="btn btn-danger" onclick="confirmarCancelamento()">Cancelar Agendamento</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ══════════════════════════════════════
+//  ESTADO GLOBAL
+// ══════════════════════════════════════
+let agendamentos = JSON.parse(localStorage.getItem('esm_agendamentos') || '[]');
+let servicos = JSON.parse(localStorage.getItem('esm_servicos') || 'null');
+let pendingDeleteId = null;
+let icsData = null;
+let gcalUrl = null;
+
+if (!servicos) {
+  servicos = [
+    { id: uid(), nome: 'Mão', icon: '💅', valor: 45 },
+    { id: uid(), nome: 'Pé', icon: '🦶', valor: 45 },
+    { id: uid(), nome: 'Pé e Mão', icon: '✨', valor: 80 },
+    { id: uid(), nome: 'Depilação', icon: '🪷', valor: 60 },
+  ];
+  salvarServicos();
+}
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+function salvar() { localStorage.setItem('esm_agendamentos', JSON.stringify(agendamentos)); }
+function salvarServicos() { localStorage.setItem('esm_servicos', JSON.stringify(servicos)); }
+
+// ══════════════════════════════════════
+//  NAVEGAÇÃO
+// ══════════════════════════════════════
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  event.currentTarget.classList.add('active');
+
+  if (p === 'lista') { atualizarStats(); renderLista(); }
+  if (p === 'servicos') { renderServicos(); populateServiceSelect(); }
+  if (p === 'agenda') { populateServiceSelect(); }
+}
+
+// ══════════════════════════════════════
+//  SERVIÇOS
+// ══════════════════════════════════════
+function renderServicos() {
+  const el = document.getElementById('service-list');
+  if (!servicos.length) { el.innerHTML = '<p style="color:var(--muted);font-size:13px;">Nenhum serviço cadastrado.</p>'; return; }
+  el.innerHTML = servicos.map(s => `
+    <div class="service-item">
+      <div class="service-icon">${s.icon}</div>
+      <span class="service-name">${s.nome}</span>
+      <span class="service-price">R$ ${Number(s.valor).toFixed(2)}</span>
+      <button class="btn btn-danger btn-sm" onclick="removerServico('${s.id}')">✕</button>
+    </div>
+  `).join('');
+}
+
+function populateServiceSelect() {
+  const sel = document.getElementById('f-servico');
+  sel.innerHTML = servicos.map(s => `<option value="${s.nome}" data-valor="${s.valor}">${s.icon} ${s.nome} — R$ ${Number(s.valor).toFixed(2)}</option>`).join('');
+  sel.onchange = () => {
+    const opt = sel.options[sel.selectedIndex];
+    document.getElementById('f-valor').value = opt.dataset.valor || '';
+  };
+  if (servicos.length) {
+    document.getElementById('f-valor').value = servicos[0].valor;
+  }
+}
+
+function adicionarServico() {
+  const nome = document.getElementById('ns-nome').value.trim();
+  const icon = document.getElementById('ns-icon').value.trim() || '💅';
+  const valor = parseFloat(document.getElementById('ns-valor').value);
+  if (!nome) { toast('Informe o nome do serviço.', 'error'); return; }
+  if (isNaN(valor) || valor < 0) { toast('Informe um valor válido.', 'error'); return; }
+  servicos.push({ id: uid(), nome, icon, valor });
+  salvarServicos();
+  document.getElementById('ns-nome').value = '';
+  document.getElementById('ns-icon').value = '';
+  document.getElementById('ns-valor').value = '';
+  renderServicos();
+  toast('Serviço adicionado!', 'success');
+}
+
+function removerServico(id) {
+  servicos = servicos.filter(s => s.id !== id);
+  salvarServicos();
+  renderServicos();
+  toast('Serviço removido.');
+}
+
+// ══════════════════════════════════════
+//  ICS / GOOGLE CALENDAR
+// ══════════════════════════════════════
+function toICSDate(date, time) {
+  // date: YYYY-MM-DD, time: HH:MM
+  const [y,m,d] = date.split('-');
+  const [hh,mm] = time.split(':');
+  return `${y}${m}${d}T${hh}${mm}00`;
+}
+
+function addMinutes(date, time, minutes) {
+  const [y,m,d] = date.split('-').map(Number);
+  const [hh,mm] = time.split(':').map(Number);
+  const dt = new Date(y, m-1, d, hh, mm + parseInt(minutes));
+  const pad = n => String(n).padStart(2,'0');
+  return `${dt.getFullYear()}${pad(dt.getMonth()+1)}${pad(dt.getDate())}T${pad(dt.getHours())}${pad(dt.getMinutes())}00`;
+}
+
+function gerarICS(dados) {
+  const start = toICSDate(dados.data, dados.hora);
+  const end = addMinutes(dados.data, dados.hora, dados.duracao);
+  const now = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  const descricao = `Serviço: ${dados.servico}\\nValor: R$ ${Number(dados.valor).toFixed(2)}\\nEsmalteria Beatriz Santana\\n${dados.obs ? 'Obs: ' + dados.obs : ''}`;
+
+  return [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Esmalteria Beatriz Santana//Agenda//PT',
+    'CALSCALE:GREGORIAN',
+    'METHOD:REQUEST',
+    'BEGIN:VEVENT',
+    `UID:${uid()}@esmalteria-bs.com`,
+    `DTSTAMP:${now}`,
+    `DTSTART;TZID=America/Sao_Paulo:${start}`,
+    `DTEND;TZID=America/Sao_Paulo:${end}`,
+    `SUMMARY:💅 ${dados.servico} — Esmalteria Beatriz Santana`,
+    `DESCRIPTION:${descricao}`,
+    `LOCATION:Esmalteria Beatriz Santana`,
+    `ORGANIZER;CN=Beatriz Santana:mailto:beatriz@esmalteria.com`,
+    dados.email ? `ATTENDEE;RSVP=TRUE;CN=${dados.nome}:mailto:${dados.email}` : '',
+    'STATUS:CONFIRMED',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Lembrete: seu horário na Esmalteria Beatriz Santana em 1 hora!',
+    'END:VALARM',
+    'BEGIN:VALARM',
+    'TRIGGER:-P1D',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Lembrete: seu horário na Esmalteria Beatriz Santana amanhã!',
+    'END:VALARM',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].filter(Boolean).join('\r\n');
+}
+
+function gerarGCalUrl(dados) {
+  const [y,m,d] = dados.data.split('-');
+  const [hh,mm] = dados.hora.split(':');
+  const start = `${y}${m}${d}T${hh}${mm}00`;
+  const endDt = addMinutes(dados.data, dados.hora, dados.duracao);
+
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: `💅 ${dados.servico} — Esmalteria Beatriz Santana`,
+    dates: `${start}/${endDt}`,
+    details: `Serviço: ${dados.servico}\nValor: R$ ${Number(dados.valor).toFixed(2)}\n${dados.obs ? 'Obs: ' + dados.obs : ''}`,
+    location: 'Esmalteria Beatriz Santana',
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+function coletarDados() {
+  const nome = document.getElementById('f-nome').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const servico = document.getElementById('f-servico').value;
+  const valor = document.getElementById('f-valor').value;
+  const data = document.getElementById('f-data').value;
+  const hora = document.getElementById('f-hora').value;
+  const duracao = document.getElementById('f-duracao').value;
+  const tel = document.getElementById('f-tel').value.trim();
+  const obs = document.getElementById('f-obs').value.trim();
+
+  if (!nome) { toast('Informe o nome da cliente.', 'error'); return null; }
+  if (!data) { toast('Informe a data.', 'error'); return null; }
+  if (!hora) { toast('Informe o horário.', 'error'); return null; }
+  if (!servico) { toast('Selecione um serviço.', 'error'); return null; }
+
+  return { id: uid(), nome, email, servico, valor: parseFloat(valor)||0, data, hora, duracao, tel, obs, status: 'pendente', criado: new Date().toISOString() };
+}
+
+function gerarConvite() {
+  const dados = coletarDados();
+  if (!dados) return;
+
+  icsData = gerarICS(dados);
+  gcalUrl = gerarGCalUrl(dados);
+
+  // Salvar agendamento
+  agendamentos.unshift(dados);
+  salvar();
+
+  if (dados.email) {
+    enviarEmail(dados);
+  } else {
+    toast('Agendamento salvo! (sem e-mail para enviar)', 'success');
+  }
+
+  // Mostrar links
+  document.getElementById('link-gcal').href = gcalUrl;
+  document.getElementById('links-gerados').style.display = 'block';
+  document.getElementById('preview-box').classList.remove('show');
+
+  toast('Agendamento salvo! Links prontos para enviar.', 'success');
+  document.getElementById('links-gerados').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function baixarICS() {
+  if (!icsData) return;
+  const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'agendamento-esmalteria.ics';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ══════════════════════════════════════
+//  PREVIEW
+// ══════════════════════════════════════
+function previewEmail() {
+  const dados = coletarDados();
+  if (!dados) return;
+
+  const dataFmt = new Date(dados.data + 'T12:00:00').toLocaleDateString('pt-BR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  document.getElementById('preview-content').innerHTML = `
+    <hr style="margin:10px 0;border-color:var(--border);">
+    <p><strong>Para:</strong> ${dados.email || '(não informado)'}</p>
+    <p><strong>Assunto:</strong> 💅 Confirmação de Agendamento — Esmalteria Beatriz Santana</p>
+    <hr style="margin:10px 0;border-color:var(--border);">
+    <p>Olá, <strong>${dados.nome}</strong>! 🌸</p>
+    <p style="margin-top:8px;">Seu agendamento na <strong>Esmalteria Beatriz Santana</strong> está confirmado:</p>
+    <div style="background:var(--rose-lt);border-radius:8px;padding:14px;margin:12px 0;">
+      <p>📅 <strong>Data:</strong> ${dataFmt}</p>
+      <p>🕐 <strong>Horário:</strong> ${dados.hora}</p>
+      <p>💅 <strong>Serviço:</strong> ${dados.servico}</p>
+      <p>💰 <strong>Valor:</strong> R$ ${Number(dados.valor).toFixed(2)}</p>
+      ${dados.obs ? `<p>📝 <strong>Obs:</strong> ${dados.obs}</p>` : ''}
+    </div>
+    <p>Adicione à sua agenda usando um dos links abaixo:</p>
+    <p style="margin-top:8px;">📥 Arquivo .ics (qualquer agenda) · 🗓 Google Calendar</p>
+    <hr style="margin:10px 0;border-color:var(--border);">
+    <p style="font-size:12px;color:var(--muted);">Em caso de dúvidas, entre em contato. Até lá! 💕</p>
+  `;
+  document.getElementById('preview-box').classList.add('show');
+}
+
+function limparForm() {
+  ['f-nome','f-email','f-valor','f-data','f-hora','f-tel','f-obs'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('links-gerados').style.display = 'none';
+  document.getElementById('preview-box').classList.remove('show');
+  icsData = null; gcalUrl = null;
+}
+
+// ══════════════════════════════════════
+//  LISTA DE AGENDAMENTOS
+// ══════════════════════════════════════
+const meses = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+function renderLista() {
+  const busca = (document.getElementById('busca').value || '').toLowerCase();
+  const filtroStatus = document.getElementById('filtro-status').value;
+
+  let lista = agendamentos.filter(a => {
+    const match = a.nome.toLowerCase().includes(busca) || a.servico.toLowerCase().includes(busca);
+    const statusOk = !filtroStatus || a.status === filtroStatus;
+    return match && statusOk;
+  });
+
+  const el = document.getElementById('agenda-list');
+  if (!lista.length) {
+    el.innerHTML = '<div class="empty"><div class="icon">📭</div><p>Nenhum agendamento encontrado.</p></div>';
+    return;
+  }
+
+  lista.sort((a,b) => a.data.localeCompare(b.data));
+
+  el.innerHTML = lista.map(a => {
+    const d = new Date(a.data + 'T12:00:00');
+    const day = d.getDate();
+    const mon = meses[d.getMonth()];
+    const badge = a.status === 'confirmado'
+      ? `<span class="badge badge-green">✓ Confirmado</span>`
+      : a.status === 'cancelado'
+      ? `<span class="badge badge-red">✕ Cancelado</span>`
+      : `<span class="badge badge-orange">⏳ Pendente</span>`;
+
+    return `
+      <div class="appt-card">
+        <div class="appt-date">
+          <div class="day">${day}</div>
+          <div class="month">${mon}</div>
+        </div>
+        <div class="appt-info">
+          <div class="name">${a.nome}</div>
+          <div class="meta">🕐 ${a.hora} · ${a.duracao} min · ${a.email || 'sem email'}</div>
+          <div class="service">${a.servico}</div>
+        </div>
+        <div>${badge}</div>
+        <div class="appt-value">R$ ${Number(a.valor).toFixed(2)}</div>
+        <div class="appt-actions">
+          ${a.status !== 'confirmado' && a.status !== 'cancelado' ? `<button class="btn btn-ghost btn-sm" onclick="confirmarStatus('${a.id}')">✓</button>` : ''}
+          ${a.status !== 'cancelado' ? `<button class="btn btn-danger btn-sm" onclick="abrirModal('${a.id}','${a.nome.replace(/'/g,"\\'")}')">✕</button>` : ''}
+          <button class="btn btn-ghost btn-sm" onclick="reenviarLinks('${a.id}')">📅</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function confirmarStatus(id) {
+  const a = agendamentos.find(x => x.id === id);
+  if (a) { a.status = 'confirmado'; salvar(); renderLista(); toast('Agendamento confirmado!', 'success'); }
+}
+
+function abrirModal(id, nome) {
+  pendingDeleteId = id;
+  document.getElementById('modal-nome').textContent = nome;
+  document.getElementById('modal-cancelar').classList.add('open');
+}
+
+function fecharModal() {
+  document.getElementById('modal-cancelar').classList.remove('open');
+  pendingDeleteId = null;
+}
+
+function confirmarCancelamento() {
+  const a = agendamentos.find(x => x.id === pendingDeleteId);
+  if (a) { a.status = 'cancelado'; salvar(); }
+  fecharModal();
+  renderLista();
+  toast('Agendamento cancelado.', 'error');
+}
+
+function reenviarLinks(id) {
+  const a = agendamentos.find(x => x.id === id);
+  if (!a) return;
+  icsData = gerarICS(a);
+  gcalUrl = gerarGCalUrl(a);
+  document.getElementById('link-gcal').href = gcalUrl;
+  document.getElementById('links-gerados').style.display = 'block';
+
+  // ir para aba agendar
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-agenda').classList.add('active');
+  document.querySelectorAll('.tab-btn')[0].classList.add('active');
+
+  document.getElementById('links-gerados').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  toast('Links prontos para reenvio!', 'success');
+}
+
+// ══════════════════════════════════════
+//  STATS
+// ══════════════════════════════════════
+function atualizarStats() {
+  const hoje = new Date().toISOString().split('T')[0];
+  const inicioSemana = (() => {
+    const d = new Date(); d.setDate(d.getDate() - d.getDay());
+    return d.toISOString().split('T')[0];
+  })();
+
+  const nHoje = agendamentos.filter(a => a.data === hoje && a.status !== 'cancelado').length;
+  const nSemana = agendamentos.filter(a => a.data >= inicioSemana && a.status !== 'cancelado').length;
+  const nTotal = agendamentos.filter(a => a.status !== 'cancelado').length;
+
+  document.getElementById('stat-hoje').textContent = nHoje;
+  document.getElementById('stat-semana').textContent = nSemana;
+  document.getElementById('stat-total').textContent = nTotal;
+}
+
+// ══════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════
+let toastTimer;
+function toast(msg, tipo) {
+  clearTimeout(toastTimer);
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + (tipo || '');
+  toastTimer = setTimeout(() => { t.className = ''; }, 3200);
+}
+
+// ══════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════
+populateServiceSelect();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("WyiaoybWyuygl09dc");
+
+async function enviarEmail(dados) {
+  // Formata a data para exibição amigável no e-mail
+  const dataFmt = new Date(dados.data + 'T12:00:00').toLocaleDateString('pt-BR', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+
+  try {
+    const resposta = await emailjs.send(
+      "service_72hvqxh",
+      "template_ihtx1f1",
+      {
+        nome: dados.nome,
+        email: dados.email,       // campo "To Email" no template: {{email}}
+        to_email: dados.email,    // alias extra caso o template use {{to_email}}
+        servico: dados.servico,
+        data: dataFmt,            // data formatada em português
+        hora: dados.hora,
+        valor: Number(dados.valor).toFixed(2),
+        telefone: dados.tel || 'Não informado',
+        observacoes: dados.obs || 'Nenhuma'
+      }
+    );
+
+    console.log("E-mail enviado com sucesso:", resposta);
+    toast("E-mail enviado para " + dados.email + "!", "success");
+  } catch (erro) {
+    // Mostra a razão exata do erro no console e no toast
+    const motivo = erro?.text || erro?.message || JSON.stringify(erro);
+    console.error("Erro EmailJS:", erro);
+    toast("Erro ao enviar e-mail: " + motivo, "error");
+  }
+}
+</script>
+
+</body>
+</html>
